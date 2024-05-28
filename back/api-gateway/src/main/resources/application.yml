@@ -1,0 +1,25 @@
+server:
+  port: 8090
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          gateway: trace
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: nihao
+          uri: http://localhost:8123
+          predicates:
+            - Path=/api/name/**
+dubbo:
+  application:
+    name: dubbo-springboot-demo-provider
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    id: nacos-register
+    address: nacos://localhost:8848
